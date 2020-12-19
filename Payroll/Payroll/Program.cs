@@ -17,7 +17,8 @@ namespace Payroll
 
             foreach (var item in employees)
             {
-                Console.WriteLine(item.Name + "-" + item.Dob + "-" + item.Role + "-" + item.StartDate + "-" + item.StartSalary);
+                Console.WriteLine(item.name + "-" + item.dob + "-" + item.role + "-" + item.startDate + "-" + item.startSalary + " "+ item.caculateAge().ToString());
+                //item.caculateAge().ToString();
             }
             Console.ReadLine();
         }

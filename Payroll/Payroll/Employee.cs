@@ -18,26 +18,105 @@ namespace Payroll
         /// <summary>
         /// Tên nhân viên
         /// </summary>
-        public string Name { get; set; }
+        private string Name;
+
+        public string name
+        {
+            get { return Name; }
+            set { Name = value; }
+        }
 
         /// <summary>
         /// Ngày sinh 
         /// </summary>
-        public string Dob { get; set; }
+        private string Dob;
+
+        public string dob
+        {
+            get { return Dob; }
+            set { Dob = value; }
+        }
 
         /// <summary>
         /// Chức vụ
         /// </summary>
-        public string Role { get; set; }
+        private string Role;
+
+        public string role
+        {
+            get { return Role; }
+            set { Role = value; }
+        }
 
         /// <summary>
         /// Ngày bắt đầu làm
         /// </summary>
-        public string StartDate { get; set; }
+        private string StartDate;
+
+        public string startDate
+        {
+            get { return StartDate; }
+            set { StartDate = value; }
+        }
 
         /// <summary>
         /// Lương khởi điểm
         /// </summary>
-        public string StartSalary { get; set; }
+        private string StartSalary;
+
+        public string startSalary
+        {
+            get { return StartSalary; }
+            set { StartSalary = value; }
+        }
+
+
+
+        /// <summary>
+        /// Tính số tuổi của nhân viên
+        /// </summary>
+        /// <returns></returns>
+        public int caculateAge()
+        {
+            int age;
+            DateTime birthDay = Common.ToDateTime(this.dob, "yyyyMMdd", "tr-TR");
+            DateTime timeNow = DateTime.Today;
+            try 
+	        {	        
+		        age = (int)Common.caculateMonthsDifference(birthDay,timeNow)/12;
+	        }
+	        catch (Exception)
+	        {
+		
+		        throw;
+	        }
+
+            return age;
+        }
+
+        public double caculateSalaryNow()
+        {
+            int yearWorking = this.caculateYearWorking() -1;
+            return Int32.Parse(this.startSalary) * Math.Pow(1.6, yearWorking);
+
+        }
+
+        public int caculateYearWorking()
+        {
+            int yearWorking;
+            DateTime startDate = Common.ToDateTime(this.startDate, "yyyyMMdd", "tr-TR");
+            DateTime timeNow = DateTime.Today;
+            try
+            {
+                yearWorking = (int)Common.caculateMonthsDifference(startDate, timeNow)/12;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return yearWorking;
+        }
     }
 }
