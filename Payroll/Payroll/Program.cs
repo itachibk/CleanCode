@@ -11,15 +11,19 @@ namespace Payroll
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            var fileName = @"C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\employee.csv";
+            //Lấy đường dẫn file
+            string pathFileEmployee = System.IO.Directory.GetCurrentDirectory() + @"\"+ @"employee.csv";
+            
+            //Khởi tạo danh sách nhân viên
             List<Employee> employees = new List<Employee>();
-            employees = Common.GetEmployeeFromCsvFile(fileName);
-
-            foreach (var item in employees)
+            //Lấy danh sách nhân viên từ file csv
+             employees = Common.GetEmployeeFromCsvFile(pathFileEmployee);
+            //Hiển thị danh sách nhân viên
+            foreach (var employee in employees)
             {
-                Console.WriteLine(item.name + "-" + item.dob + "-" + item.role + "-" + item.startDate + "-" + item.startSalary + " "+ item.caculateAge().ToString());
-                //item.caculateAge().ToString();
+                Console.WriteLine(employee.ToString());
             }
+            //Tạm dừng màn hình console
             Console.ReadLine();
         }
     }

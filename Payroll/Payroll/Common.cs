@@ -1,4 +1,11 @@
-﻿using System;
+﻿/// <summary>
+/// **************************************
+/// 
+/// Lớp common tiện ích
+/// 
+/// **************************************
+/// <summary>
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,11 +18,13 @@ namespace Payroll
     public static class Common
     {
         private static int HEADER_ROWS = 1;
+        public static int MONTH_OF_YEAR = 12;
+        public static double COEFICIENTS_SALARY = 1 + 0.06;
         /// <summary>
-        /// 
+        /// Đọc file csv  lưu thông tin nhân viên vào danh sách .
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="fileName">Đường dẫn file csv chứa thông tin nhân viên</param>
+        /// <returns>Danh sách nhân viên</returns>
         public static List<Employee> GetEmployeeFromCsvFile(string fileName)
         {
             List<Employee> employees = new List<Employee>();
@@ -50,13 +59,15 @@ namespace Payroll
             {
                 using (var reader = new StreamReader(fileName))
                 {
-                    int row = 1;
+                    //Số dòng header
+                    int headerRows = HEADER_ROWS;
                     while (!reader.EndOfStream)
                     {
-                        if(row <= HEADER_ROWS)
+                        //Nếu là header thì không lưu vào danh sách 
+                        if (headerRows <= HEADER_ROWS)
                         {
                             reader.ReadLine();
-                            row++;
+                            headerRows++;
                             continue;
                         }
                         //Đọc từng dòng trong file csv
@@ -77,8 +88,8 @@ namespace Payroll
         /// <summary>
         /// Tính số năm giữa 2 mốc thời gian
         /// </summary>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
+        /// <param name="startDate">Thời điểm bắt đầu</param>
+        /// <param name="endDate">Thời điểm kết thúc</param>
         public static float caculateMonthsDifference(DateTime startDate, DateTime endDate)
         {
             int monthsDiff = 1;
@@ -92,12 +103,12 @@ namespace Payroll
         }
 
         /// <summary>
-        /// 
+        /// Chuyển thời gian từ String sang kiểu DateTime
         /// </summary>
         /// <param name="strDateTime"></param>
         /// <param name="format"></param>
         /// <param name="culture"></param>
-        /// <returns></returns>
+        /// <returns>Kiểu DateTime</returns>
         public static DateTime ToDateTime(this string strDateTime, string format = "yyyyMMdd", string cultureString = "tr-TR")
         {
             try

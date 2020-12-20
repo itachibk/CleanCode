@@ -1,0 +1,6 @@
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\bin\Debug\Payroll.exe.config
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\bin\Debug\Payroll.exe
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\bin\Debug\Payroll.pdb
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\obj\Debug\Payroll.exe
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\obj\Debug\Payroll.pdb
+C:\Users\Shine\Desktop\CleanCode\CleanCode\Payroll\Payroll\obj\Debug\Payroll.csprojResolveAssemblyReference.cache
